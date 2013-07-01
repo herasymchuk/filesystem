@@ -1,0 +1,6 @@
+1. Adjacency List Model
+
+2. Materialized Path/Path Enumeration Model
+https://communities.bmc.com/docs/DOC-9902
+
+3. Nested Sets
