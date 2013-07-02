@@ -18,6 +18,8 @@ public interface FileSystemDAO {;
 
     List getChildrenByPath(String path);
 
+    List getNearestChildrenByPath(String path);
+
     Locatable getByPath(String path);
 
     void create(Locatable file);

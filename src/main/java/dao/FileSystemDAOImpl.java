@@ -37,6 +37,13 @@ public class FileSystemDAOImpl implements FileSystemDAO {
     }
 
     @Override
+    public List getNearestChildrenByPath(String path) {
+        return  entityManager.createNamedQuery("Locatable.getNearestChildrenByPath", Locatable.class)
+                .setParameter("path", path)
+                .getResultList();
+    }
+
+    @Override
     public Locatable getByPath(String path) {
         List<Locatable> results = entityManager.createNamedQuery("Locatable.getByPath", Locatable.class)
                                     .setParameter("path", path)

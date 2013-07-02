@@ -26,18 +26,13 @@ public class FileSystemServiceImpl implements FileSystemService {
     }
 
     @Override
-    public List getNearestChildrenById(Long id) {
-        return null;//fileSystemDAO.getChildrenById(id);
-    }
-
-    @Override
     public List getChildrenByPath(String path) {
         return fileSystemDAO.getChildrenByPath(path);
     }
 
     @Override
     public List getNearestChildrenByPath(String path) {
-        return fileSystemDAO.getByPath(path).getNearestChildren();
+        return fileSystemDAO.getNearestChildrenByPath(path);
     }
 
     @Override

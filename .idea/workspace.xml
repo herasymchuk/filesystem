@@ -9,7 +9,7 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/BaseEntity.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372273735404" ignored="false" />
     <file path="/FileSystemService.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372712006565" ignored="false" />
-    <file path="/Locatable.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372721031388" ignored="false" />
+    <file path="/Locatable.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372804458397" ignored="false" />
     <file path="/pom.xml" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372274906042" ignored="false" />
     <file path="/db.properties" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372706095814" ignored="false" />
     <file path="/spring-config-test.xml" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372275699701" ignored="false" />
@@ -18,11 +18,11 @@
     <file path="/File.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372717299761" ignored="false" />
     <file path="/Folder.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372717488434" ignored="false" />
     <file path="/FileSystemDao.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372279950637" ignored="false" />
-    <file path="/FileSystemDAOImpl.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372715845875" ignored="false" />
-    <file path="/FileSystemServiceImpl.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372721166397" ignored="false" />
-    <file path="/FileSystemDAO.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372711789988" ignored="false" />
+    <file path="/FileSystemDAOImpl.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372804595562" ignored="false" />
+    <file path="/FileSystemServiceImpl.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372804638852" ignored="false" />
+    <file path="/FileSystemDAO.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372804562647" ignored="false" />
     <file path="/UserServiceTest.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372703757389" ignored="false" />
-    <file path="/FileSystemServiceTest.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372720706227" ignored="false" />
+    <file path="/FileSystemServiceTest.java" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372805319289" ignored="false" />
     <file path="/persistence.xml" changelist="b6611dc0-8dec-4e82-8797-e30a12090ee9" time="1372706264017" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +38,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -73,7 +73,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -83,21 +83,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="FileSystemServiceTest.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FileSystemServiceTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/FileSystemServiceTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="44" selection-start="1663" selection-end="1663" vertical-scroll-proportion="0.12142857">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="21" selection-start="2079" selection-end="2079" vertical-scroll-proportion="0.0">
+            <state line="22" column="6" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -106,7 +95,7 @@
       <file leaf-file-name="FileSystemService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/service/FileSystemService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="9" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0">
+            <state line="17" column="34" selection-start="377" selection-end="377" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -115,7 +104,16 @@
       <file leaf-file-name="FileSystemDAOImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/dao/FileSystemDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.0">
+            <state line="41" column="42" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileSystemDAO.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/dao/FileSystemDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="35" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -124,19 +122,27 @@
       <file leaf-file-name="FileSystemServiceImpl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/service/FileSystemServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="22" selection-start="917" selection-end="917" vertical-scroll-proportion="0.0">
+            <state line="25" column="5" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Locatable.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Locatable.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/entity/Locatable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="46" selection-start="2263" selection-end="2263" vertical-scroll-proportion="0.0">
+            <state line="71" column="17" selection-start="1708" selection-end="1708" vertical-scroll-proportion="-1.0451127">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Folder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/entity/Folder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="23" column="11" selection-start="461" selection-end="479" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2201#2212#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,10 +151,8 @@
       <file leaf-file-name="File.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/entity/File.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1070" selection-end="1070" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="31" column="17" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -170,14 +174,14 @@
         <option value="$PROJECT_DIR$/src/test/resources/spring-database-test.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/dao/FileSystemDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/service/FileSystemService.java" />
         <option value="$PROJECT_DIR$/src/main/java/entity/Folder.java" />
         <option value="$PROJECT_DIR$/src/main/java/entity/File.java" />
-        <option value="$PROJECT_DIR$/src/main/java/dao/FileSystemDAOImpl.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/entity/Locatable.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dao/FileSystemDAO.java" />
+        <option value="$PROJECT_DIR$/src/main/java/dao/FileSystemDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/FileSystemServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/service/FileSystemService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/entity/Locatable.java" />
         <option value="$PROJECT_DIR$/src/test/java/FileSystemServiceTest.java" />
       </list>
     </option>
@@ -211,8 +215,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-65" />
-    <option name="y" value="90" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1456" />
     <option name="height" value="876" />
   </component>
@@ -244,7 +248,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -435,6 +438,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -623,6 +627,24 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
+    <option name="USER" value="" />
+    <option name="PASSWORD" value="" />
+    <option name="mySSHConnectionTimeout" value="30000" />
+    <option name="mySSHReadTimeout" value="30000" />
+    <option name="LAST_MERGED_REVISION" />
+    <option name="MERGE_DRY_RUN" value="false" />
+    <option name="MERGE_DIFF_USE_ANCESTRY" value="true" />
+    <option name="UPDATE_LOCK_ON_DEMAND" value="false" />
+    <option name="IGNORE_SPACES_IN_MERGE" value="false" />
+    <option name="DETECT_NESTED_COPIES" value="true" />
+    <option name="CHECK_NESTED_FOR_QUICK_MERGE" value="false" />
+    <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
+    <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
+    <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
+    <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b6611dc0-8dec-4e82-8797-e30a12090ee9" name="Default" comment="" />
@@ -632,7 +654,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-65" y="90" width="1456" height="876" extended-state="0" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -643,18 +665,18 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5363129" sideWeight="0.49713057" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6187151" sideWeight="0.4978479" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.4978479" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.49713057" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32998565" sideWeight="0.6703911" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32998565" sideWeight="0.6703911" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24964131" sideWeight="0.6703911" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960895" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32960895" sideWeight="0.49713057" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -722,46 +744,19 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.6.0_43/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="19" selection-start="3593" selection-end="3593" vertical-scroll-proportion="0.3321033">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/3.0.6.RELEASE/spring-aop-3.0.6.RELEASE.jar!/org/springframework/aop/support/AopUtils.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="35" selection-start="2189" selection-end="2189" vertical-scroll-proportion="0.6194332">
-          <folding />
-        </state>
+        <state line="41" column="35" selection-start="2189" selection-end="2189" vertical-scroll-proportion="0.6194332" />
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="40" selection-start="388" selection-end="388" vertical-scroll-proportion="0.63846153">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/FileSystemDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="37" selection-start="369" selection-end="369" vertical-scroll-proportion="0.5261438">
-          <folding />
-        </state>
+        <state line="11" column="40" selection-start="388" selection-end="388" vertical-scroll-proportion="0.63846153" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.6.0_43/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="407" column="6" selection-start="18707" selection-end="18707" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/FileSystemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="9" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="407" column="6" selection-start="18707" selection-end="18707" vertical-scroll-proportion="0.33333334" />
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.6.0_43/src.zip!/java/util/Date.java">
@@ -771,27 +766,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/dao/FileSystemDAOImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1097" selection-end="1097" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entity/Folder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="11" selection-start="461" selection-end="479" vertical-scroll-proportion="0.51321584">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-core/3.6.8.Final/hibernate-core-3.6.8.Final.jar!/org/hibernate/Hibernate.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="210" column="57" selection-start="5881" selection-end="5881" vertical-scroll-proportion="0.5985577">
-          <folding />
-        </state>
+        <state line="210" column="57" selection-start="5881" selection-end="5881" vertical-scroll-proportion="0.5985577" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
@@ -803,43 +780,71 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/test.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/FileSystemServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="5" selection-start="627" selection-end="627" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/entity/File.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1070" selection-end="1070" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="31" column="17" selection-start="657" selection-end="657" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/entity/Locatable.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/service/FileSystemService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="46" selection-start="2263" selection-end="2263" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2201#2212#0" expanded="true" />
-          </folding>
+        <state line="17" column="34" selection-start="377" selection-end="377" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/service/FileSystemServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/FileSystemDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="22" selection-start="917" selection-end="917" vertical-scroll-proportion="0.0">
+        <state line="41" column="42" selection-start="1251" selection-end="1251" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/FileSystemServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="44" selection-start="1663" selection-end="1663" vertical-scroll-proportion="0.12142857">
+        <state line="22" column="6" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/dao/FileSystemDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="35" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/entity/Folder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="11" selection-start="461" selection-end="479" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/entity/BaseEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="22" selection-start="192" selection-end="192" vertical-scroll-proportion="0.35334873">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/entity/Locatable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="71" column="17" selection-start="1708" selection-end="1708" vertical-scroll-proportion="-1.0451127">
+          <folding />
         </state>
       </provider>
     </entry>

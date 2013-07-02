@@ -20,7 +20,7 @@ public class FileSystemServiceTest extends BaseTestCase {
     @Autowired
     private FileSystemService fileSystemService;
 
-    @Rollback(false)
+    //@Rollback(false)
     @Test
     public void simpleTest() throws Exception {
         Folder rootFolder = new Folder("root");
@@ -44,7 +44,18 @@ public class FileSystemServiceTest extends BaseTestCase {
         children = fileSystemService.getChildrenByPath(rootFolder.getPath());
         TestCase.assertNotNull(children);
         TestCase.assertEquals(2, children.size());
+        this.assertContains(folder, children);
         this.assertContains(file, children);
+
+        children = fileSystemService.getNearestChildrenByPath(rootFolder.getPath());
+        TestCase.assertNotNull(children);
+        TestCase.assertEquals(1, children.size());
+        this.assertContains(folder, children);
+        children = fileSystemService.getNearestChildrenByPath(folder.getPath());
+        TestCase.assertNotNull(children);
+        TestCase.assertEquals(1, children.size());
+        this.assertContains(file, children);
+
 
         File file2 = new File("secondFile");
         fileSystemService.create(file2);

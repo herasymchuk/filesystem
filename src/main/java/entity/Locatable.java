@@ -14,14 +14,15 @@ import java.util.List;
  */
 
 @NamedQueries( {
-/*    @NamedQuery(
-        name="Locatable.getChildrenById",
-        query="SELECT locatable FROM Locatable locatable WHERE locatable.parentId = :parentId"
-    ),*/
 
     @NamedQuery(
         name="Locatable.getChildrenByPath",
         query="SELECT l FROM Locatable l WHERE l.path LIKE :path"
+    ),
+
+    @NamedQuery(
+        name="Locatable.getNearestChildrenByPath",
+        query="SELECT l FROM Locatable l WHERE l.path = CONCAT(:path, '/', l.id)"
     ),
 
     @NamedQuery(
@@ -70,26 +71,14 @@ public class Locatable extends BaseEntity {
     @Column(name = "creation_date")
     private Date date;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_id")
-    private Locatable parent;
-
     public void setParent(Locatable parent) {
         if(parent != null) {
-            this.parent = parent;
             if(parent.path != null) {
                 setPath(parent.path + "/" + getId().toString());
             }
         } else {
             setPath(getId().toString());
         }
-    }
-
-    @OneToMany(mappedBy = "parent")
-    private List<Locatable> nearestChildren  = new ArrayList<Locatable>();
-
-    public List<Locatable> getNearestChildren() {
-        return nearestChildren;
     }
 
     private String path;

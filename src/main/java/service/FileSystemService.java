@@ -18,9 +18,6 @@ public interface FileSystemService {
     List getChildrenById(Long id);
 
     @Transactional
-    List getNearestChildrenById(Long id);
-
-    @Transactional
     List getChildrenByPath(String path);
 
     @Transactional
