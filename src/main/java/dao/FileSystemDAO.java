@@ -14,6 +14,8 @@ import java.util.List;
 
 public interface FileSystemDAO {;
 
+    Locatable getById(Long id);
+
     List getChildrenById(Long id);
 
     List getChildrenByPath(String path);

@@ -15,6 +15,9 @@ import java.util.List;
 public interface FileSystemService {
 
     @Transactional
+    Locatable getById(Long id);
+
+    @Transactional
     List getChildrenById(Long id);
 
     @Transactional

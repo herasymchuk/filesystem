@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -12,7 +13,7 @@ import java.util.Collection;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"/spring-config-test.xml"})
 @SuppressWarnings("deprecation")
-public abstract class BaseTestCase extends AbstractTransactionalJUnit4SpringContextTests {
+public abstract class BaseTestCase extends AbstractJUnit4SpringContextTests {
 
     public static void assertContains(Object source, Collection collection){
         assertContains("", source, collection);

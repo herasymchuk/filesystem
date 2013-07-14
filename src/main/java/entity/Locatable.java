@@ -22,7 +22,7 @@ import java.util.List;
 
     @NamedQuery(
         name="Locatable.getNearestChildrenByPath",
-        query="SELECT l FROM Locatable l WHERE l.path = CONCAT(:path, '/', l.id)"
+        query="SELECT l FROM Locatable l WHERE l.path = CONCAT(:path, '/', l.name)"
     ),
 
     @NamedQuery(
@@ -74,10 +74,10 @@ public class Locatable extends BaseEntity {
     public void setParent(Locatable parent) {
         if(parent != null) {
             if(parent.path != null) {
-                setPath(parent.path + "/" + getId().toString());
+                setPath(parent.path + "/" + getName());
             }
         } else {
-            setPath(getId().toString());
+            setPath(getName());
         }
     }
 
@@ -117,5 +117,20 @@ public class Locatable extends BaseEntity {
         this.id = id;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        Locatable locatable = (Locatable) o;
+
+        if (!id.equals(locatable.id)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }

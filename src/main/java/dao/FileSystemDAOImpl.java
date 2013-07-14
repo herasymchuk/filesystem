@@ -25,6 +25,11 @@ public class FileSystemDAOImpl implements FileSystemDAO {
     }
 
     @Override
+    public Locatable getById(Long id) {
+        return entityManager.find(Locatable.class, id);
+    }
+
+    @Override
     public List<Locatable> getChildrenById(Long id) {
         return getChildrenByPath(entityManager.find(Locatable.class, id).getPath());
     }
@@ -70,10 +75,8 @@ public class FileSystemDAOImpl implements FileSystemDAO {
     public void move(Locatable item, Locatable parent) {
         int count = entityManager.createNamedQuery("Locatable.moveItem")
                 .setParameter("oldPath", item.getPath())
-                .setParameter("newPath", parent.getPath() + "/" + item.getId())
+                .setParameter("newPath", parent.getPath() + "/" + item.getName())
                 .setParameter("path", item.getPath()+"%")
                 .executeUpdate();
-        item.setParent(parent);
-        entityManager.merge(item);
     }
 }

@@ -21,6 +21,11 @@ public class FileSystemServiceImpl implements FileSystemService {
     private FileSystemDAO fileSystemDAO;
 
     @Override
+    public Locatable getById(Long id) {
+        return fileSystemDAO.getById(id);
+    }
+
+    @Override
     public List getChildrenById(Long id) {
         return fileSystemDAO.getChildrenById(id);
     }
