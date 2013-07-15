@@ -79,4 +79,18 @@ public class FileSystemDAOImpl implements FileSystemDAO {
                 .setParameter("path", item.getPath()+"%")
                 .executeUpdate();
     }
+
+    @Override
+    public void rename(Locatable item, String newName) {
+        item.setName(newName);
+        entityManager.merge(item);
+        String oldPath = item.getPath();
+        int endPathInd = oldPath.lastIndexOf("/") + 1;
+        String newPath = oldPath.substring(0, endPathInd).concat(newName);
+        entityManager.createNamedQuery("Locatable.moveItem")
+                .setParameter("oldPath", oldPath)
+                .setParameter("newPath", newPath)
+                .setParameter("path", oldPath+"%")
+                .executeUpdate();
+    }
 }

@@ -38,5 +38,8 @@ public interface FileSystemService {
     @Transactional
     void move(Locatable item, Locatable parent);
 
+    @Transactional
+    void rename(Locatable item, String newPath);
+
 
 }

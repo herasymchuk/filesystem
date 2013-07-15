@@ -34,6 +34,21 @@ public class FileSystemServiceTest extends BaseTestCase {
         file.setData(IOUtils.toByteArray((getClass().getResourceAsStream("test.txt"))));
         file.setParent(folder);
         fileSystemService.create(file);
+        fileSystemService.rename(rootFolder, "toor");
+        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
+        folder = (Folder)fileSystemService.getById(folder.getId());
+        file = (File)fileSystemService.getById(file.getId());
+        fileSystemService.rename(folder, "folder_renamed");
+        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
+        folder = (Folder)fileSystemService.getById(folder.getId());
+        file = (File)fileSystemService.getById(file.getId());
+        fileSystemService.rename(file, "file_renamed");
+        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
+        folder = (Folder)fileSystemService.getById(folder.getId());
+        file = (File)fileSystemService.getById(file.getId());
+        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
+        folder = (Folder)fileSystemService.getById(folder.getId());
+        file = (File)fileSystemService.getById(file.getId());
         TestCase.assertEquals(folder, fileSystemService.getByPath(createPath(rootFolder, folder)));
 
         List children = fileSystemService.getChildrenById(folder.getId());

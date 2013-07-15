@@ -24,9 +24,11 @@ public interface FileSystemDAO {;
 
     Locatable getByPath(String path);
 
-    void create(Locatable file);
+    void create(Locatable item);
 
-    void delete(Locatable file);
+    void delete(Locatable item);
 
-    void move(Locatable file, Locatable parent);
+    void move(Locatable item, Locatable parent);
+
+    void rename(Locatable item, String newName);
 }

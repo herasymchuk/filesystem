@@ -59,4 +59,9 @@ public class FileSystemServiceImpl implements FileSystemService {
     public void move(Locatable item, Locatable parent) {
        fileSystemDAO.move(item, parent);
     }
+
+    @Override
+    public void rename(Locatable item, String newPath) {
+        fileSystemDAO.rename(item, newPath);
+    }
 }
