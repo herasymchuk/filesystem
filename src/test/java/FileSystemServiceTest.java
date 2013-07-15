@@ -99,6 +99,62 @@ public class FileSystemServiceTest extends BaseTestCase {
         TestCase.assertEquals(0, fileSystemService.getChildrenById(rootFolder.getId()).size());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void setNameTest() throws Exception {
+        Folder rootFolder = new Folder("root/");
+        rootFolder.setParent(null);
+        fileSystemService.create(rootFolder);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void creationConflictTest() throws Exception {
+        Folder rootFolder = new Folder("root3");
+        rootFolder.setParent(null);
+        fileSystemService.create(rootFolder);
+        Folder rootFolder2 = new Folder("root3");
+        rootFolder2.setParent(null);
+        fileSystemService.create(rootFolder2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void renameTest() throws Exception {
+        Folder rootFolder = new Folder("root2");
+        rootFolder.setParent(null);
+        fileSystemService.create(rootFolder);
+        fileSystemService.rename(rootFolder, "ro/");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void renamingConflictTest() throws Exception {
+        Folder rootFolder = new Folder("root20");
+        rootFolder.setParent(null);
+        fileSystemService.create(rootFolder);
+        Folder rootFolder2 = new Folder("root21");
+        rootFolder2.setParent(null);
+        fileSystemService.create(rootFolder2);
+        fileSystemService.rename(rootFolder2, "root20");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void movingConflictTest() throws Exception {
+        Folder rootFolder = new Folder("root2");
+        rootFolder.setParent(null);
+        fileSystemService.create(rootFolder);
+
+        Folder folder = new Folder("firstFolder2");
+        folder.setParent(rootFolder);
+        fileSystemService.create(folder);
+
+        File file = new File("firstFile2");
+        file.setData(IOUtils.toByteArray((getClass().getResourceAsStream("test.txt"))));
+        file.setParent(folder);
+        fileSystemService.create(file);
+
+        Folder folder2 = new Folder("firstFolder2");
+        folder2.setParent(folder);
+        fileSystemService.create(folder2);
+        fileSystemService.move(folder2, rootFolder);
+    }
 
     private String createPath(Locatable ...items) {
         StringBuffer path = new StringBuffer("");

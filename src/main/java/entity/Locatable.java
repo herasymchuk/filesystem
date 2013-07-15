@@ -87,7 +87,7 @@ public class Locatable extends BaseEntity {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name) throws IllegalArgumentException {
         this.name = name;
     }
 

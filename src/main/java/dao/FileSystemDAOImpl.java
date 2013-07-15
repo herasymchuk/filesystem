@@ -60,7 +60,14 @@ public class FileSystemDAOImpl implements FileSystemDAO {
     }
 
     @Override
-    public void create(Locatable item) {
+    public void create(Locatable item) throws IllegalArgumentException {
+        if(getByPath(item.getPath()) != null) {
+            throw new IllegalArgumentException("Item with the same name '" +
+                    item.getName() + "' is already exists!");
+        }
+        if(!isNameValid(item.getName())) {
+            throw new IllegalArgumentException("Name '" + item.getName() + "' is not valid!");
+        }
         entityManager.persist(item);
     }
 
@@ -72,25 +79,47 @@ public class FileSystemDAOImpl implements FileSystemDAO {
     }
 
     @Override
-    public void move(Locatable item, Locatable parent) {
+    public void move(Locatable item, Locatable parent) throws IllegalArgumentException {
+        String newPath =  parent.getPath() + "/" + item.getName();
+        if(getByPath(newPath) != null) {
+            throw new IllegalArgumentException("Item with the same name '" +
+                    item.getName() + "' is already exists in '" +
+                    parent.getPath() +  "'!");
+        }
         int count = entityManager.createNamedQuery("Locatable.moveItem")
                 .setParameter("oldPath", item.getPath())
-                .setParameter("newPath", parent.getPath() + "/" + item.getName())
+                .setParameter("newPath", newPath)
                 .setParameter("path", item.getPath()+"%")
                 .executeUpdate();
     }
 
     @Override
     public void rename(Locatable item, String newName) {
-        item.setName(newName);
-        entityManager.merge(item);
         String oldPath = item.getPath();
         int endPathInd = oldPath.lastIndexOf("/") + 1;
         String newPath = oldPath.substring(0, endPathInd).concat(newName);
+
+        if(!isNameValid(newName)) {
+            throw new IllegalArgumentException("Name '" + newName + "' is not valid!");
+        }
+        if(getByPath(newPath) != null) {
+            throw new IllegalArgumentException("Item with the same name '" +
+                    newName + "' is already exists in '" +
+                    oldPath.substring(0, endPathInd) +  "'!");
+        }
+        item.setName(newName);
+        entityManager.merge(item);
         entityManager.createNamedQuery("Locatable.moveItem")
                 .setParameter("oldPath", oldPath)
                 .setParameter("newPath", newPath)
                 .setParameter("path", oldPath+"%")
                 .executeUpdate();
+    }
+
+    private boolean isNameValid(String name) {
+        return !(name.contains("/") ||
+                name.contains("\\") ||
+                name.contains("?") ||
+                name.contains(","));
     }
 }
