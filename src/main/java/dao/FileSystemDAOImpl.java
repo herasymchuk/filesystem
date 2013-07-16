@@ -60,14 +60,7 @@ public class FileSystemDAOImpl implements FileSystemDAO {
     }
 
     @Override
-    public void create(Locatable item) throws IllegalArgumentException {
-        if(getByPath(item.getPath()) != null) {
-            throw new IllegalArgumentException("Item with the same name '" +
-                    item.getName() + "' is already exists!");
-        }
-        if(!isNameValid(item.getName())) {
-            throw new IllegalArgumentException("Name '" + item.getName() + "' is not valid!");
-        }
+    public void create(Locatable item) {
         entityManager.persist(item);
     }
 
@@ -79,13 +72,7 @@ public class FileSystemDAOImpl implements FileSystemDAO {
     }
 
     @Override
-    public void move(Locatable item, Locatable parent) throws IllegalArgumentException {
-        String newPath =  parent.getPath() + "/" + item.getName();
-        if(getByPath(newPath) != null) {
-            throw new IllegalArgumentException("Item with the same name '" +
-                    item.getName() + "' is already exists in '" +
-                    parent.getPath() +  "'!");
-        }
+    public void move(Locatable item, String newPath) throws IllegalArgumentException {
         int count = entityManager.createNamedQuery("Locatable.moveItem")
                 .setParameter("oldPath", item.getPath())
                 .setParameter("newPath", newPath)
@@ -99,14 +86,6 @@ public class FileSystemDAOImpl implements FileSystemDAO {
         int endPathInd = oldPath.lastIndexOf("/") + 1;
         String newPath = oldPath.substring(0, endPathInd).concat(newName);
 
-        if(!isNameValid(newName)) {
-            throw new IllegalArgumentException("Name '" + newName + "' is not valid!");
-        }
-        if(getByPath(newPath) != null) {
-            throw new IllegalArgumentException("Item with the same name '" +
-                    newName + "' is already exists in '" +
-                    oldPath.substring(0, endPathInd) +  "'!");
-        }
         item.setName(newName);
         entityManager.merge(item);
         entityManager.createNamedQuery("Locatable.moveItem")
@@ -114,12 +93,5 @@ public class FileSystemDAOImpl implements FileSystemDAO {
                 .setParameter("newPath", newPath)
                 .setParameter("path", oldPath+"%")
                 .executeUpdate();
-    }
-
-    private boolean isNameValid(String name) {
-        return !(name.contains("/") ||
-                name.contains("\\") ||
-                name.contains("?") ||
-                name.contains(","));
     }
 }

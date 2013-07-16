@@ -39,7 +39,7 @@ public interface FileSystemService {
     void move(Locatable item, Locatable parent);
 
     @Transactional
-    void rename(Locatable item, String newPath);
+    void rename(Locatable item, String newName);
 
 
 }

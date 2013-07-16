@@ -28,7 +28,7 @@ public interface FileSystemDAO {;
 
     void delete(Locatable item);
 
-    void move(Locatable item, Locatable parent);
+    void move(Locatable item, String newPath);
 
     void rename(Locatable item, String newName);
 }
