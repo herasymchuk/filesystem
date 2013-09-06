@@ -20,45 +20,49 @@ public class FileSystemServiceTest extends BaseTestCase {
 
     @Test
     public void simpleTest() throws Exception {
-        Folder rootFolder = new Folder("root", null);
+        Folder rootFolder = new Folder("toor", null);
         fileSystemService.create(rootFolder);
 
+        //create new folder
         Folder folder = new Folder("firstFolder", rootFolder);
         fileSystemService.create(folder);
 
+        //create new file
         File file = new File("firstFile", folder);
         file.setData(IOUtils.toByteArray((getClass().getResourceAsStream("test.txt"))));
         fileSystemService.create(file);
-        fileSystemService.rename(rootFolder, "toor");
+
+        fileSystemService.rename(rootFolder, "root");
+        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
         folder = (Folder)fileSystemService.getById(folder.getId());
+        file = (File)fileSystemService.getById(file.getId());
+
         fileSystemService.rename(folder, "folder_renamed");
-        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
         folder = (Folder)fileSystemService.getById(folder.getId());
         file = (File)fileSystemService.getById(file.getId());
+
         fileSystemService.rename(file, "file_renamed");
-        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
-        folder = (Folder)fileSystemService.getById(folder.getId());
         file = (File)fileSystemService.getById(file.getId());
-        rootFolder = (Folder)fileSystemService.getById(rootFolder.getId());
-        folder = (Folder)fileSystemService.getById(folder.getId());
-        file = (File)fileSystemService.getById(file.getId());
-        TestCase.assertEquals(folder, fileSystemService.getByPath(createPath(rootFolder, folder)));
+
+        TestCase.assertEquals(folder, fileSystemService.getByPath(createFullPath(rootFolder, folder)));
 
         List children = fileSystemService.getChildrenById(folder.getId());
         TestCase.assertNotNull(children);
         TestCase.assertEquals(1, children.size());
         assertContains(file, children);
-        children = fileSystemService.getChildrenByPath(rootFolder.getPath());
+
+        children = fileSystemService.getChildrenByPath(rootFolder.getFullPath());
         TestCase.assertNotNull(children);
         TestCase.assertEquals(2, children.size());
         assertContains(folder, children);
         assertContains(file, children);
 
-        children = fileSystemService.getNearestChildrenByPath(rootFolder.getPath());
+        children = fileSystemService.getNearestChildrenByPath(rootFolder.getFullPath());
         TestCase.assertNotNull(children);
         TestCase.assertEquals(1, children.size());
         assertContains(folder, children);
-        children = fileSystemService.getNearestChildrenByPath(folder.getPath());
+
+        children = fileSystemService.getNearestChildrenByPath(folder.getFullPath());
         TestCase.assertNotNull(children);
         TestCase.assertEquals(1, children.size());
         assertContains(file, children);
@@ -66,25 +70,23 @@ public class FileSystemServiceTest extends BaseTestCase {
 
         File file2 = new File("secondFile", rootFolder);
         fileSystemService.create(file2);
-
         Folder folder2 = new Folder("secondFolder", rootFolder);
         fileSystemService.create(folder2);
 
-        String pathToFile2 = createPath(rootFolder, file2);
-        TestCase.assertEquals(file2, fileSystemService.getByPath(pathToFile2));
+        String fullPathToFile = createFullPath(rootFolder, file2);
+        TestCase.assertEquals(file2, fileSystemService.getByPath(fullPathToFile));
         fileSystemService.delete(file2);
-        TestCase.assertEquals(null, fileSystemService.getByPath(pathToFile2));
+        TestCase.assertEquals(null, fileSystemService.getByPath(fullPathToFile));
 
         fileSystemService.move(folder, folder2);
 
-        //how update file persistance filesystem.app.model.entity properly
-        assertContains(file, fileSystemService.getChildrenByPath(folder2.getPath()));
-        assertContains(folder, fileSystemService.getChildrenByPath(folder2.getPath()));
+        assertContains(file, fileSystemService.getChildrenByPath(folder2.getFullPath()));
+        assertContains(folder, fileSystemService.getChildrenByPath(folder2.getFullPath()));
         children = fileSystemService.getChildrenById(folder.getId());
         assertContains(file, children);
 
-        File f = (File)fileSystemService.getByPath(createPath(rootFolder, folder2, folder, file));
-        Assert.assertArrayEquals(IOUtils.toByteArray((getClass().getResourceAsStream("test.txt"))), f.getData());
+        file = (File)fileSystemService.getByPath(createFullPath(rootFolder, folder2, folder, file));
+        Assert.assertArrayEquals(IOUtils.toByteArray((getClass().getResourceAsStream("test.txt"))), file.getData());
 
         //fileSystemService.delete(folder2);
         //TestCase.assertEquals(0, fileSystemService.getChildrenById(rootFolder.getId()).size());
@@ -137,7 +139,7 @@ public class FileSystemServiceTest extends BaseTestCase {
         fileSystemService.move(folder2, rootFolder);
     }
 
-    private String createPath(Locatable ...items) {
+    private String createFullPath(Locatable ...items) {
         StringBuffer path = new StringBuffer("");
         for (Locatable item : items) {
             path.append(item.getName()).append("/");

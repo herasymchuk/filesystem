@@ -22,20 +22,24 @@ import java.util.Date;
 
     @NamedQuery(
         name="Locatable.getNearestChildrenByPath",
-        query="SELECT l FROM Locatable l WHERE l.path = CONCAT(:path, '/', l.name)"
-    ),
-
-    @NamedQuery(
-        name="Locatable.getByPath",
         query="SELECT l FROM Locatable l WHERE l.path = :path"
     ),
 
     @NamedQuery(
+        name="Locatable.getByNameAndPath",
+        query="SELECT l FROM Locatable l WHERE l.path = :path AND l.name = :name"
+    ),
+
+    @NamedQuery(
         name="Locatable.deleteItem",
-        query="DELETE FROM Locatable l WHERE l.path LIKE :path"
+        query="DELETE FROM Locatable l WHERE l.path LIKE :path OR l.id = :id"
     ),
     @NamedQuery(
         name="Locatable.moveItem",
+        query="UPDATE Locatable l SET l.path = CONCAT(:newPath, SUBSTRING(l.path, LENGTH(:oldPath)+1))  WHERE l.path LIKE :path OR l.id = :id"
+    ),
+    @NamedQuery(
+        name="Locatable.renameItem",
         query="UPDATE Locatable l SET l.path = CONCAT(:newPath, SUBSTRING(l.path, LENGTH(:oldPath)+1))  WHERE l.path LIKE :path"
     )
 })
@@ -77,12 +81,11 @@ public class Locatable extends BaseEntity {
     private Date date;
 
     public void setParent(Locatable parent) {
-        if(parent != null && parent.path != null) {
-            setParentPath(parent.path);
+        if(parent != null) {
+            setPath(parent.getFullPath());
         } else {
-            setParentPath("");
+            setPath("");
         }
-        setPath(getParentPath() + "/" + getName());
     }
 
     private String path;
@@ -93,7 +96,6 @@ public class Locatable extends BaseEntity {
 
     public void setName(String name) throws IllegalArgumentException {
         this.name = name;
-        setPath(getParentPath() + "/" + getName());
     }
 
     public Date getDate() {
@@ -104,19 +106,18 @@ public class Locatable extends BaseEntity {
         this.date = date;
     }
 
+    //@Transient
+    //private String fullPath;
+
+    public String getFullPath() {
+        if(path.isEmpty()) {
+           return getName();
+        }
+        return getPath() + "/" + getName();
+    }
+
     public String getPath() {
         return path;
-    }
-
-    @Transient
-    private String parentPath;
-
-    public String getParentPath() {
-        return parentPath;//new Path(path).getParentPath();
-    }
-
-    public void setParentPath(String parentPath) {
-        this.parentPath = parentPath;
     }
 
     public void setPath(String path) {

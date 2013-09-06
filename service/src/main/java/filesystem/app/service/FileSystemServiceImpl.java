@@ -42,18 +42,21 @@ public class FileSystemServiceImpl implements FileSystemService {
     }
 
     @Override
-    public Locatable getByPath(String path) {
-        return fileSystemDAO.getByPath(path);
+    public Locatable getByPath(String fullPath) {
+        int endPathInd = fullPath.lastIndexOf("/");
+        String path = endPathInd > 0 ? fullPath.substring(0, endPathInd) : "";
+        String name = fullPath.substring(endPathInd+1);
+        return fileSystemDAO.getByNameAndPath(name, path);
     }
 
     @Override
     public void create(Locatable item) throws IllegalArgumentException {
-        if(getByPath(item.getPath()) != null) {
-            throw new IllegalArgumentException("Item with the same name '" +
-                    item.getName() + "' is already exists!");
-        }
         if(!isNameValid(item.getName())) {
             throw new IllegalArgumentException("Name '" + item.getName() + "' is not valid!");
+        }
+        if(findItem(item.getName(), item.getPath()) != null) {
+            throw new IllegalArgumentException("Item with the same name '" +
+                    item.getName() + "' is already exists!");
         }
         fileSystemDAO.create(item);
     }
@@ -63,30 +66,30 @@ public class FileSystemServiceImpl implements FileSystemService {
         fileSystemDAO.delete(item);
     }
 
+    private Locatable findItem(String name, String path) {
+        return  fileSystemDAO.getByNameAndPath(name, path);
+    }
+
     @Override
     public void move(Locatable item, Locatable parent) throws IllegalArgumentException {
-        String newPath =  parent.getPath() + "/" + item.getName();
-        if(getByPath(newPath) != null) {
+        String newPath =  parent.getFullPath();
+        if(findItem(item.getName(), newPath) != null) {
             throw new IllegalArgumentException("Item with the same name '" +
                     item.getName() + "' is already exists in '" +
-                    parent.getPath() +  "'!");
+                    newPath +  "'!");
         }
        fileSystemDAO.move(item, newPath);
     }
 
     @Override
     public void rename(Locatable item, String newName) throws IllegalArgumentException {
-        String oldPath = item.getPath();
-        int endPathInd = oldPath.lastIndexOf("/") + 1;
-        String newPath = oldPath.substring(0, endPathInd).concat(newName);
-
         if(!isNameValid(newName)) {
             throw new IllegalArgumentException("Name '" + newName + "' is not valid!");
         }
-        if(getByPath(newPath) != null) {
+        if(findItem(newName, item.getPath()) != null) {
             throw new IllegalArgumentException("Item with the same name '" +
                     newName + "' is already exists in '" +
-                    oldPath.substring(0, endPathInd) +  "'!");
+                    item.getPath() +  "'!");
         }
         fileSystemDAO.rename(item, newName);
     }

@@ -22,7 +22,7 @@ public interface FileSystemDAO {;
 
     List getNearestChildrenByPath(String path);
 
-    Locatable getByPath(String path);
+    Locatable getByNameAndPath(String name, String path);
 
     void create(Locatable item);
 

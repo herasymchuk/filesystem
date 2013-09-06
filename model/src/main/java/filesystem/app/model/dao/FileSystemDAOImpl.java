@@ -31,16 +31,26 @@ public class FileSystemDAOImpl implements filesystem.app.model.dao.FileSystemDAO
 
     @Override
     public List<Locatable> getChildrenById(Long id) {
-        return getChildrenByPath(entityManager.find(Locatable.class, id).getPath());
+        return getChildrenByPath(entityManager.find(Locatable.class, id).getFullPath());
     }
 
+    /**
+     * Return all children by full item path
+     * @param path - full item path (item.getFullPath())
+     * @return
+     */
     @Override
     public List<Locatable> getChildrenByPath(String path) {
         return entityManager.createNamedQuery("Locatable.getChildrenByPath", Locatable.class)
-                .setParameter("path", path+"/%")
+                .setParameter("path", path+"%")
                 .getResultList();
     }
 
+    /**
+     * Return only nearest children by full item path
+     * @param path - full item path (item.getFullPath())
+     * @return
+     */
     @Override
     public List getNearestChildrenByPath(String path) {
         return  entityManager.createNamedQuery("Locatable.getNearestChildrenByPath", Locatable.class)
@@ -49,8 +59,9 @@ public class FileSystemDAOImpl implements filesystem.app.model.dao.FileSystemDAO
     }
 
     @Override
-    public Locatable getByPath(String path) {
-        List<Locatable> results = entityManager.createNamedQuery("Locatable.getByPath", Locatable.class)
+    public Locatable getByNameAndPath(String name, String path) {
+        List<Locatable> results = entityManager.createNamedQuery("Locatable.getByNameAndPath", Locatable.class)
+                                    .setParameter("name", name)
                                     .setParameter("path", path)
                                     .getResultList();
         if(!results.isEmpty()) {
@@ -67,31 +78,35 @@ public class FileSystemDAOImpl implements filesystem.app.model.dao.FileSystemDAO
     @Override
     public void delete(Locatable item) {
         entityManager.createNamedQuery("Locatable.deleteItem")
-                .setParameter("path", item.getPath()+"%")
+                .setParameter("id", item.getId())
+                .setParameter("path", item.getFullPath()+"%")
                 .executeUpdate();
     }
 
     @Override
     public void move(Locatable item, String newPath) throws IllegalArgumentException {
-        int count = entityManager.createNamedQuery("Locatable.moveItem")
+        entityManager.createNamedQuery("Locatable.moveItem")
                 .setParameter("oldPath", item.getPath())
                 .setParameter("newPath", newPath)
-                .setParameter("path", item.getPath()+"%")
+                .setParameter("path", item.getFullPath()+"%")
+                .setParameter("id", item.getId())
                 .executeUpdate();
     }
 
     @Override
     public void rename(Locatable item, String newName) {
-        String oldPath = item.getPath();
-        int endPathInd = oldPath.lastIndexOf("/") + 1;
-        String newPath = oldPath.substring(0, endPathInd).concat(newName);
-
-        item.setName(newName);
-        entityManager.merge(item);
-        entityManager.createNamedQuery("Locatable.moveItem")
+        String oldPath = item.getFullPath();
+        StringBuilder newPath = new StringBuilder(item.getPath());
+        if(!item.getPath().isEmpty()){
+            newPath.append("/");
+        }
+        newPath.append(newName).toString();
+        entityManager.createNamedQuery("Locatable.renameItem")
                 .setParameter("oldPath", oldPath)
-                .setParameter("newPath", newPath)
+                .setParameter("newPath", newPath.toString())
                 .setParameter("path", oldPath+"%")
                 .executeUpdate();
+        item.setName(newName);
+        entityManager.merge(item);
     }
 }
