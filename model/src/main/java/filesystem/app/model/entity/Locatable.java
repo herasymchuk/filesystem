@@ -1,8 +1,10 @@
 package filesystem.app.model.entity;
 
 import filesystem.app.model.utils.Path;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -41,6 +43,10 @@ import java.util.Date;
     @NamedQuery(
         name="Locatable.renameItem",
         query="UPDATE Locatable l SET l.path = CONCAT(:newPath, SUBSTRING(l.path, LENGTH(:oldPath)+1))  WHERE l.path LIKE :path"
+    ),
+    @NamedQuery(
+        name="Locatable.updateItemName",
+        query="UPDATE Locatable l SET l.name = :name  WHERE l.id = :id"
     )
 })
 
@@ -74,6 +80,8 @@ public class Locatable extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "IdTable")
     private Long id;
 
+    @NotNull
+    @NotEmpty
     private String name;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -146,8 +154,8 @@ public class Locatable extends BaseEntity {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
+//    @Override
+//    public int hashCode() {
+//        return id.hashCode();
+//    }
 }

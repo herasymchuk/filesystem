@@ -106,7 +106,12 @@ public class FileSystemDAOImpl implements filesystem.app.model.dao.FileSystemDAO
                 .setParameter("newPath", newPath.toString())
                 .setParameter("path", oldPath+"%")
                 .executeUpdate();
-        item.setName(newName);
-        entityManager.merge(item);
+        entityManager.createNamedQuery("Locatable.updateItemName")
+                .setParameter("name", newName)
+                .setParameter("id", item.getId())
+                .executeUpdate();
+        //item.setName(newName);
+        //entityManager.merge(item);
+
     }
 }

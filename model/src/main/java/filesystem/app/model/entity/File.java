@@ -19,6 +19,16 @@ public class File extends Locatable {
     @Transient
     private Long size;
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    private String type;
+
     public File() {
     }
 
@@ -40,7 +50,7 @@ public class File extends Locatable {
     }
 
     @Lob
-    @Column(length=100000)
+    @Column(length=10000000)
     private byte[] data;
 
     public Long getSize() {
